@@ -40,5 +40,6 @@ mpirun -np 4 ./sieve1 100000
 ```
 
 Notes: the number of processes must be small enough that each one gets at least one number above
-`sqrt(N)`; the serial sieve in `parallel_primes.c` stops at `N-1`, so its output can differ from the
-parallel one by the number `N` itself when `N` is prime.
+`sqrt(N)`. Both the parallel and the serial sieve in `parallel_primes.c` search `2..N-1`: the last
+rank's upper bound works out to `N-1`, and the serial loop runs to `N-1`, so `N` itself is never
+reported even when it is prime.
